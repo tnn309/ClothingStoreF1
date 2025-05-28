@@ -1,0 +1,30 @@
+﻿@model List<ClothingStore.Models.Product>
+
+<h2>Sản phẩm trong danh mục: @ViewBag.CategoryName</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Tên Sản Phẩm</th>
+            <th>Mô Tả</th>
+            <th>Giá</th>
+            <th>Hành Động</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var product in Model)
+        {
+            <tr>
+                <td>@product.Name</td>
+                <td>@product.Description</td>
+                <td>@product.Price.ToString("N0")đ</td>
+                <td>
+                    <a asp-action="EditProduct" asp-route-id="@product.Id" class="btn btn-warning">Sửa</a>
+                    <a asp-action="DeleteProduct" asp-route-id="@product.Id" class="btn btn-danger">Xóa</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-action="ProductStats" class="btn btn-secondary">Quay Lại</a>

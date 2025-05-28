@@ -1,0 +1,11 @@
+﻿@model string
+
+<h2>Xóa Danh Mục</h2>
+
+<p>Bạn có chắc chắn muốn xóa danh mục "@ViewBag.CategoryName"? Tất cả sản phẩm trong danh mục này sẽ được chuyển về 'Khác'.</p>
+
+<form asp-action="DeleteCategoryConfirmed" method="post">
+    <input type="hidden" name="categoryName" value="@ViewBag.CategoryName" />
+    <button type="submit" class="btn btn-danger">Xác Nhận Xóa</button>
+    <a asp-action="Categories" class="btn btn-secondary">Hủy</a>
+</form>

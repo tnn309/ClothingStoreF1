@@ -1,0 +1,30 @@
+﻿@model ClothingStore.Models.Product
+
+<div class="container-fluid my-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2><i class="fas fa-info-circle"></i> Chi Tiết Sản Phẩm</h2>
+        <a asp-action="Products" class="btn btn-secondary">
+            <i class="fas fa-arrow-left"></i> Quay Lại
+        </a>
+    </div>
+
+    <div class="card shadow">
+        <div class="card-header bg-info text-white">
+            <h5 class="mb-0">@Model.Name</h5>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-4">
+                    <img src="@Model.ImageUrl" alt="@Model.Name" class="img-fluid rounded" style="max-height: 300px; object-fit: cover;" />
+                </div>
+                <div class="col-md-8">
+                    <p><strong>Mô tả:</strong> @Model.Description</p>
+                    <p><strong>Giá:</strong> @Model.Price.ToString("N0")₫</p>
+                    <p><strong>Danh mục:</strong> @Model.Category</p>
+                    <a asp-action="EditProduct" asp-route-id="@Model.Id" class="btn btn-warning">Sửa</a>
+                    <a asp-action="DeleteProduct" asp-route-id="@Model.Id" class="btn btn-danger">Xóa</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

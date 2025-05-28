@@ -1,0 +1,35 @@
+﻿@model List<string>
+
+<h2>Quản lý Danh Mục</h2>
+
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-success">@TempData["Message"]</div>
+}
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger">@TempData["Error"]</div>
+}
+
+<a asp-action="AddCategory" class="btn btn-primary">Thêm Danh Mục Mới</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Tên Danh Mục</th>
+            <th>Hành Động</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var category in Model)
+        {
+            <tr>
+                <td>@category</td>
+                <td>
+                    <a asp-action="EditCategory" asp-route-categoryName="@category" class="btn btn-warning">Sửa</a>
+                    <a asp-action="DeleteCategory" asp-route-categoryName="@category" class="btn btn-danger">Xóa</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

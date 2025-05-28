@@ -1,0 +1,18 @@
+﻿@model string
+
+<h2>Sửa Danh Mục</h2>
+
+@if (ViewBag.Error != null)
+{
+    <div class="alert alert-danger">@ViewBag.Error</div>
+}
+
+<form asp-action="EditCategory" method="post">
+    <input type="hidden" name="oldCategoryName" value="@ViewBag.CategoryName" />
+    <div class="form-group">
+        <label>Tên Danh Mục Mới</label>
+        <input type="text" name="newCategoryName" class="form-control" value="@ViewBag.CategoryName" required />
+    </div>
+    <button type="submit" class="btn btn-primary">Lưu</button>
+    <a asp-action="Categories" class="btn btn-secondary">Hủy</a>
+</form>

@@ -1,0 +1,97 @@
+﻿@model ClothingStore.Models.Product
+
+@{
+    ViewData["Title"] = "Product Details";
+}
+
+<div class="product-details">
+    <div class="row">
+        <div class="col-md-6">
+            <img src="@Model.ImageUrl" alt="@Model.Name" class="img-fluid" />
+            <div class="product-image-overlay">
+                <img src="/images/zoom-icon.png" alt="Zoom" class="zoom-icon" />
+            </div>
+        </div>
+        <div class="col-md-6">
+            <h2>@Model.Name</h2>
+            <p class="price">@Model.Price.ToString("N0") đ</p>
+            <div class="size-options">
+                <label for="size">Size:</label>
+                <select id="size" name="size" class="form-control">
+                    <option value="29">29</option>
+                    <option value="30">30</option>
+                    <option value="31">31</option>
+                    <option value="32">32</option>
+                    <option value="33">33</option>
+                    <option value="34">34</option>
+                    <option value="36">36</option>
+                </select>
+            </div>
+            <div class="quantity">
+                <label for="quantity">Số lượng:</label>
+                <input type="number" id="quantity" name="quantity" value="1" min="1" class="form-control" />
+            </div>
+            <form asp-action="AddToCart" asp-controller="Products" method="post">
+                <input type="hidden" name="id" value="@Model.Id" />
+                <input type="hidden" name="size" id="selectedSize" />
+                <input type="hidden" name="quantity" id="selectedQuantity" />
+                <button type="submit" class="btn btn-primary add-to-cart">THÊM VÀO GIỎ HÀNG</button>
+            </form>
+            <div class="product-description">
+                <h4>Thông tin sản phẩm:</h4>
+                <ul>
+                    <li>Danh mục: @Model.Category</li>
+                    <li>Mô tả: @(Model.Description ?? "Không có mô tả")</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .product-details img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    .product-image-overlay {
+        position: relative;
+    }
+
+    .zoom-icon {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        width: 30px;
+        height: 30px;
+    }
+
+    .price {
+        color: green;
+        font-weight: bold;
+    }
+
+    .size-options, .quantity {
+        margin: 10px 0;
+    }
+
+    .add-to-cart {
+        background-color: #ff5733;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+    }
+</style>
+
+@section Scripts {
+    <script>
+        document.querySelector('.add-to-cart').addEventListener('click', function (e) {
+            e.preventDefault();
+            var size = document.getElementById('size').value;
+            var quantity = document.getElementById('quantity').value;
+            document.getElementById('selectedSize').value = size;
+            document.getElementById('selectedQuantity').value = quantity;
+            this.closest('form').submit();
+        });
+    </script>
+}

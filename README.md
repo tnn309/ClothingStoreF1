@@ -43,7 +43,7 @@ Hệ thống quản lý cửa hàng thời trang xây dựng bằng ASP.NET Core
 
 ## Download and Build 
 
-1. Clone repository: git clone https://github.com/tnn309/ClothingStore.git
+1. Clone repository: git clone https://github.com/tnn309/ClothingStoreF1.git
 2. Khôi phục packages : dotnet restore
 3. Cấu hình database trong appsettings.json
 '
